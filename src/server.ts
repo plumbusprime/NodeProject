@@ -18,7 +18,7 @@ import EnvVars from '@src/common/EnvVars';
 import HttpStatusCodes from '@src/common/HttpStatusCodes';
 import { RouteError } from '@src/common/classes';
 import { NodeEnvs } from '@src/common/misc';
-
+import ExampleService from './services/ExampleService';
 
 // **** Variables **** //
 
@@ -84,6 +84,9 @@ app.get('/users', (_: Request, res: Response) => {
   return res.sendFile('users.html', { root: viewsDir });
 });
 
+app.get('/examples', async(_: Request, res: Response) => {
+  return res.end(JSON.stringify(await ExampleService.getAll()))
+});
 
 // **** Export default **** //
 
